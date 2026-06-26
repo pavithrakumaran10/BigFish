@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Orchard & Co. — Organic Fruits Delivered Fresh</title>
+<meta name="description" content="Hand-picked, certified organic fruits delivered fresh to your door. Order online from Orchard & Co." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍏</text></svg>" />
+<style>
+:root{
+  --bg-1:#eafbe7; --bg-2:#d6f3e4; --bg-3:#fef6e4; --bg-4:#e7f5d8;
+  --ink:#1f3326; --ink-soft:#4a5d4f; --accent:#2f9e5e; --accent-deep:#1f7a47;
+  --gold:#e6a23c; --berry:#c0476a;
+  --glass:rgba(255,255,255,.55); --glass-strong:rgba(255,255,255,.72);
+  --glass-line:rgba(255,255,255,.6); --shadow:0 12px 40px -12px rgba(31,51,38,.35);
+  --radius:22px; --maxw:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Plus Jakarta Sans",system-ui,sans-serif;color:var(--ink);
+  min-height:100vh;line-height:1.55;
+  background:
+    radial-gradient(120% 90% at 8% 5%, var(--bg-3) 0%, transparent 55%),
+    radial-gradient(110% 80% at 95% 12%, var(--bg-2) 0%, transparent 50%),
+    radial-gradient(120% 120% at 50% 110%, var(--bg-4) 0%, transparent 60%),
+    linear-gradient(160deg,var(--bg-1),var(--bg-2));
+  background-attachment:fixed;overflow-x:hidden;
+}
+.orb{position:fixed;border-radius:50%;filter:blur(50px);opacity:.5;z-index:0;pointer-events:none;animation:float 18s ease-in-out infinite}
+.orb.a{width:340px;height:340px;background:#9be7b4;top:-80px;left:-60px}
+.orb.b{width:300px;height:300px;background:#ffd9a0;bottom:-90px;right:-40px;animation-delay:-6s}
+.orb.c{width:240px;height:240px;background:#ffc2d4;top:40%;right:12%;animation-delay:-11s}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(20px,-30px) scale(1.08)}}
+
+h1,h2,h3,.brand-name{font-family:"Fraunces",Georgia,serif;letter-spacing:-.01em}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;position:relative;z-index:1}
+
+.glass{
+  background:var(--glass);backdrop-filter:blur(18px) saturate(160%);
+  -webkit-backdrop-filter:blur(18px) saturate(160%);
+  border:1px solid var(--glass-line);box-shadow:var(--shadow);border-radius:var(--radius);
+}
+
+header{position:sticky;top:14px;z-index:50;margin:14px auto 0;max-width:var(--maxw);padding:0 22px}
+.nav{
+  display:flex;align-items:center;gap:18px;padding:12px 18px;border-radius:18px;
+  background:var(--glass-strong);backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  border:1px solid var(--glass-line);box-shadow:var(--shadow);
+}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700}
+.brand .logo{font-size:1.6rem;filter:drop-shadow(0 3px 5px rgba(0,0,0,.15))}
+.brand-name{font-size:1.25rem;font-weight:600}
+.brand small{display:block;font-family:"Plus Jakarta Sans";font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-deep);font-weight:600}
+.nav-links{display:flex;gap:4px;margin-left:auto}
+.nav-links a{padding:8px 14px;border-radius:12px;font-weight:500;font-size:.92rem;transition:background .25s,color .25s}
+.nav-links a:hover{background:rgba(47,158,94,.14);color:var(--accent-deep)}
+.icon-btn{
+  position:relative;display:grid;place-items:center;width:44px;height:44px;border:none;cursor:pointer;
+  border-radius:14px;background:rgba(255,255,255,.5);border:1px solid var(--glass-line);
+  font-size:1.2rem;transition:transform .2s,background .25s}
+.icon-btn:hover{transform:translateY(-2px) scale(1.04);background:#fff}
+.cart-count{
+  position:absolute;top:-6px;right:-6px;min-width:20px;height:20px;padding:0 5px;border-radius:10px;
+  background:var(--berry);color:#fff;font-size:.7rem;font-weight:700;display:grid;place-items:center;
+  font-family:"Plus Jakarta Sans";transform:scale(0);transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
+.cart-count.show{transform:scale(1)}
+
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:center;padding:54px 0 30px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:30px;background:var(--glass-strong);border:1px solid var(--glass-line);font-size:.78rem;font-weight:600;color:var(--accent-deep);margin-bottom:18px;backdrop-filter:blur(10px)}
+.hero h1{font-size:clamp(2.4rem,5vw,3.9rem);line-height:1.04;font-weight:600;margin-bottom:16px}
+.hero h1 em{font-style:italic;color:var(--accent-deep)}
+.hero p{font-size:1.08rem;color:var(--ink-soft);max-width:30ch;margin-bottom:26px}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;border:none;cursor:pointer;font-family:inherit;
+  font-weight:600;font-size:.98rem;padding:14px 24px;border-radius:15px;transition:transform .2s,box-shadow .25s,background .25s}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-deep));color:#fff;box-shadow:0 12px 26px -10px rgba(31,122,71,.7)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 34px -12px rgba(31,122,71,.8)}
+.btn-ghost{background:var(--glass-strong);border:1px solid var(--glass-line);color:var(--ink);backdrop-filter:blur(10px)}
+.btn-ghost:hover{transform:translateY(-3px);background:#fff}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero-stats{display:flex;gap:26px;margin-top:30px}
+.hero-stats .s b{font-family:"Fraunces";font-size:1.5rem;font-weight:600;color:var(--accent-deep)}
+.hero-stats .s span{font-size:.8rem;color:var(--ink-soft)}
+.hero-art{position:relative;height:420px}
+.hero-art .ph{
+  position:absolute;border-radius:26px;overflow:hidden;box-shadow:var(--shadow);border:3px solid rgba(255,255,255,.6)}
+.hero-art .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-art .p1{width:58%;height:75%;top:0;right:0;z-index:2;animation:float 12s ease-in-out infinite}
+.hero-art .p2{width:48%;height:55%;bottom:0;left:0;z-index:3;animation:float 14s ease-in-out infinite;animation-delay:-4s}
+.hero-art .badge{
+  position:absolute;left:6%;top:8%;z-index:4;padding:12px 16px;border-radius:16px;
+  background:var(--glass-strong);backdrop-filter:blur(14px);border:1px solid var(--glass-line);
+  box-shadow:var(--shadow);font-size:.82rem;font-weight:600;display:flex;align-items:center;gap:8px;animation:float 10s ease-in-out infinite;animation-delay:-2s}
+
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin:46px 0 22px;flex-wrap:wrap}
+.section-head h2{font-size:clamp(1.8rem,3.5vw,2.5rem);font-weight:600}
+.section-head p{color:var(--ink-soft);font-size:.96rem}
+.toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:24px}
+.search{flex:1;min-width:220px;display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:14px;background:var(--glass-strong);border:1px solid var(--glass-line);backdrop-filter:blur(12px)}
+.search input{border:none;background:transparent;outline:none;font-family:inherit;font-size:.95rem;width:100%;color:var(--ink)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:9px 16px;border-radius:30px;border:1px solid var(--glass-line);background:var(--glass);cursor:pointer;font-family:inherit;font-weight:600;font-size:.85rem;color:var(--ink-soft);transition:all .25s;backdrop-filter:blur(10px)}
+.chip:hover{color:var(--accent-deep)}
+.chip.active{background:linear-gradient(135deg,var(--accent),var(--accent-deep));color:#fff;border-color:transparent;box-shadow:0 8px 18px -8px rgba(31,122,71,.6)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:22px}
+.card{
+  position:relative;border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;
+  background:var(--glass-strong);backdrop-filter:blur(16px) saturate(160%);
+  -webkit-backdrop-filter:blur(16px) saturate(160%);
+  border:1px solid var(--glass-line);box-shadow:var(--shadow);
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;will-change:transform}
+.card:hover{transform:translateY(-8px);box-shadow:0 26px 50px -18px rgba(31,51,38,.45)}
+.card-img{position:relative;aspect-ratio:4/3;overflow:hidden;background:linear-gradient(135deg,#e8f6ec,#fef6e4)}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.card:hover .card-img img{transform:scale(1.07)}
+.card-img .fallback{position:absolute;inset:0;display:none;place-items:center;font-size:4.5rem}
+.card-img.broken img{display:none}
+.card-img.broken .fallback{display:grid}
+.tag{position:absolute;top:12px;left:12px;padding:5px 11px;border-radius:20px;font-size:.7rem;font-weight:700;letter-spacing:.03em;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);color:var(--accent-deep);box-shadow:0 4px 10px rgba(0,0,0,.08)}
+.tag.out{background:rgba(192,71,106,.92);color:#fff}
+.card-body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card-body .cat{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);font-weight:700}
+.card-body h3{font-size:1.18rem;font-weight:600}
+.card-body .desc{font-size:.84rem;color:var(--ink-soft);flex:1}
+.price-row{display:flex;align-items:baseline;gap:6px;margin-top:6px}
+.price{font-family:"Fraunces";font-size:1.4rem;font-weight:600;color:var(--ink)}
+.price-row .unit{font-size:.8rem;color:var(--ink-soft)}
+.card-actions{display:flex;gap:10px;margin-top:12px}
+.add-btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:.9rem;padding:11px;border-radius:13px;background:linear-gradient(135deg,var(--accent),var(--accent-deep));color:#fff;transition:transform .2s,filter .2s}
+.add-btn:hover{transform:translateY(-2px);filter:brightness(1.05)}
+.add-btn:disabled{background:#cdd6cf;cursor:not-allowed;transform:none;color:#7c887e}
+.del-btn{display:none;width:44px;border:1px solid rgba(192,71,106,.4);background:rgba(192,71,106,.1);color:var(--berry);border-radius:13px;cursor:pointer;font-size:1rem;transition:background .2s}
+.del-btn:hover{background:rgba(192,71,106,.2)}
+body.admin .del-btn{display:grid;place-items:center}
+.empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--ink-soft)}
+.empty .big{font-size:3rem;margin-bottom:10px}
+
+.features{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:50px 0 10px}
+.feature{padding:22px;text-align:center}
+.feature .ic{font-size:2rem;margin-bottom:8px}
+.feature b{display:block;font-family:"Fraunces";font-weight:600;font-size:1.05rem;margin-bottom:4px}
+.feature span{font-size:.84rem;color:var(--ink-soft)}
+
+footer{margin-top:60px;padding:40px 0 30px}
+.foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:30px 28px}
+.foot p{font-size:.88rem;color:var(--ink-soft);max-width:34ch}
+.foot a.adminlink{font-size:.8rem;color:var(--ink-soft);opacity:.7}
+.foot a.adminlink:hover{color:var(--accent-deep)}
+
+.overlay{position:fixed;inset:0;background:rgba(31,51,38,.4);backdrop-filter:blur(3px);opacity:0;visibility:hidden;transition:opacity .3s;z-index:90}
+.overlay.show{opacity:1;visibility:visible}
+.drawer{
+  position:fixed;top:0;right:0;height:100%;width:min(420px,92vw);z-index:100;
+  background:var(--glass-strong);backdrop-filter:blur(26px) saturate(180%);
+  -webkit-backdrop-filter:blur(26px) saturate(180%);
+  border-left:1px solid var(--glass-line);box-shadow:-20px 0 60px -20px rgba(31,51,38,.5);
+  transform:translateX(100%);transition:transform .4s cubic-bezier(.2,.85,.25,1);
+  display:flex;flex-direction:column;padding:24px}
+.drawer.show{transform:translateX(0)}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.drawer-head h3{font-size:1.4rem;font-weight:600}
+.close{border:none;background:rgba(255,255,255,.5);width:38px;height:38px;border-radius:11px;cursor:pointer;font-size:1.1rem}
+.cart-items{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:12px;margin:-4px -4px 0;padding:4px}
+.ci{display:flex;gap:12px;padding:12px;border-radius:16px;background:rgba(255,255,255,.55);border:1px solid var(--glass-line)}
+.ci img{width:62px;height:62px;border-radius:12px;object-fit:cover;flex-shrink:0}
+.ci .ph{width:62px;height:62px;border-radius:12px;display:grid;place-items:center;font-size:2rem;background:linear-gradient(135deg,#e8f6ec,#fef6e4);flex-shrink:0}
+.ci-info{flex:1;min-width:0}
+.ci-info b{font-size:.95rem;font-weight:600;display:block}
+.ci-info .pu{font-size:.78rem;color:var(--ink-soft)}
+.qty{display:inline-flex;align-items:center;gap:0;margin-top:6px;border-radius:10px;overflow:hidden;border:1px solid var(--glass-line);background:rgba(255,255,255,.6)}
+.qty button{width:28px;height:28px;border:none;background:transparent;cursor:pointer;font-size:1rem;color:var(--accent-deep)}
+.qty span{min-width:30px;text-align:center;font-weight:600;font-size:.9rem}
+.ci-sub{text-align:right;font-family:"Fraunces";font-weight:600}
+.cart-foot{padding-top:16px;border-top:1px solid var(--glass-line);margin-top:14px}
+.cart-total{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+.cart-total b{font-family:"Fraunces";font-size:1.6rem;font-weight:600}
+.wa-btn{width:100%;display:inline-flex;align-items:center;justify-content:center;gap:10px;border:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:1rem;padding:15px;border-radius:15px;background:linear-gradient(135deg,#25d366,#128c4a);color:#fff;box-shadow:0 12px 26px -10px rgba(18,140,74,.7);transition:transform .2s}
+.wa-btn:hover{transform:translateY(-2px)}
+.cart-empty{flex:1;display:grid;place-content:center;text-align:center;color:var(--ink-soft);gap:8px}
+.cart-empty .big{font-size:3rem}
+
+.field{margin-bottom:13px}
+.field label{display:block;font-size:.8rem;font-weight:600;margin-bottom:5px;color:var(--ink-soft)}
+.field input,.field textarea,.field select{
+  width:100%;padding:11px 13px;border-radius:12px;border:1px solid var(--glass-line);
+  background:rgba(255,255,255,.65);font-family:inherit;font-size:.92rem;color:var(--ink);outline:none;transition:border .2s}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--accent)}
+.field textarea{resize:vertical;min-height:62px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.admin-note{font-size:.78rem;color:var(--ink-soft);background:rgba(230,162,60,.14);border:1px solid rgba(230,162,60,.3);padding:10px 12px;border-radius:12px;margin-bottom:14px}
+.admin-scroll{flex:1;overflow-y:auto;margin:0 -4px;padding:0 4px}
+.toast{
+  position:fixed;bottom:26px;left:50%;z-index:200;
+  padding:13px 22px;border-radius:14px;background:var(--accent-deep);color:#fff;font-weight:600;font-size:.92rem;
+  box-shadow:0 14px 30px -10px rgba(31,122,71,.7);opacity:0;visibility:hidden;transition:opacity .3s,translate .3s;translate:-50% 20px}
+.toast.show{opacity:1;visibility:visible;translate:-50% 0}
+
+.reveal{opacity:0;transform:translateY(24px)}
+.reveal.in{opacity:1;transform:none;transition:opacity .6s ease,transform .6s cubic-bezier(.2,.8,.2,1)}
+
+@media(max-width:860px){
+  .hero{grid-template-columns:1fr;gap:10px}
+  .hero-art{height:300px;order:-1}
+  .features{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="orb a"></div><div class="orb b"></div><div class="orb c"></div>
+
+<header>
+  <nav class="nav">
+    <a class="brand" href="#top">
+      <span class="logo">🍏</span>
+      <span><span class="brand-name" id="brandName">Orchard &amp; Co.</span><small>Certified Organic</small></span>
+    </a>
+    <div class="nav-links">
+      <a href="#catalog">Shop</a>
+      <a href="#why">Why Organic</a>
+      <a href="#catalog">Seasonal</a>
+    </div>
+    <button class="icon-btn" id="cartBtn" title="View cart" aria-label="View cart">🛒<span class="cart-count" id="cartCount">0</span></button>
+  </nav>
+</header>
+
+<main class="wrap" id="top">
+  <section class="hero">
+    <div class="reveal">
+      <span class="hero-eyebrow">🌱 Farm to door in 24 hours</span>
+      <h1>Fruit the way <em>nature</em> intended.</h1>
+      <p>Hand-picked, certified organic, and grown without synthetic pesticides. Order online and we deliver fresh.</p>
+      <div class="hero-cta">
+        <a href="#catalog" class="btn btn-primary">Browse fruits →</a>
+        <button class="btn btn-ghost" id="heroCartBtn">🛒 View cart</button>
+      </div>
+      <div class="hero-stats">
+        <div class="s"><b id="statCount">0+</b><br><span>fruits in season</span></div>
+        <div class="s"><b>100%</b><br><span>certified organic</span></div>
+        <div class="s"><b>24h</b><br><span>fresh delivery</span></div>
+      </div>
+    </div>
+    <div class="hero-art reveal">
+      <div class="ph p1"><img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=700&q=80&auto=format&fit=crop" alt="Fresh organic fruit basket" onerror="this.parentElement.style.background='linear-gradient(135deg,#9be7b4,#ffd9a0)';this.remove()"></div>
+      <div class="ph p2"><img src="https://images.unsplash.com/photo-1519996529931-28324d5a630e?w=600&q=80&auto=format&fit=crop" alt="Strawberries close up" onerror="this.parentElement.style.background='linear-gradient(135deg,#ffc2d4,#9be7b4)';this.remove()"></div>
+      <div class="badge">⭐ 4.9 · 2,300+ happy homes</div>
+    </div>
+  </section>
+
+  <section id="catalog">
+    <div class="section-head">
+      <div>
+        <h2>Today&rsquo;s harvest</h2>
+        <p>Picked at peak ripeness. Tap a fruit to add it to your basket.</p>
+      </div>
+      <button class="btn btn-ghost" id="adminToggle" style="display:none">🔧 Manage catalog</button>
+    </div>
+    <div class="toolbar">
+      <label class="search">🔎<input type="text" id="search" placeholder="Search fruits…" aria-label="Search fruits"></label>
+      <div class="chips" id="chips"></div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="why" class="features">
+    <div class="feature glass reveal"><div class="ic">🌿</div><b>No nasties</b><span>Zero synthetic pesticides or waxes.</span></div>
+    <div class="feature glass reveal"><div class="ic">🚚</div><b>24h delivery</b><span>From the farm to your door, fast.</span></div>
+    <div class="feature glass reveal"><div class="ic">🤝</div><b>Fair to farmers</b><span>We pay growers directly and fairly.</span></div>
+    <div class="feature glass reveal"><div class="ic">♻️</div><b>Plastic-free</b><span>Compostable, recyclable packaging.</span></div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <div class="foot glass">
+    <div>
+      <div class="brand" style="margin-bottom:8px"><span class="logo">🍏</span><span class="brand-name">Orchard &amp; Co.</span></div>
+      <p>Certified organic fruit, delivered fresh across the city. Grown with care, priced with fairness.</p>
+    </div>
+    <div style="text-align:right">
+      <p style="margin-bottom:8px">© 2026 Orchard &amp; Co.</p>
+      <a class="adminlink" href="#" id="adminLink">Owner login</a>
+    </div>
+  </div>
+</footer>
+
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="cartDrawer" aria-label="Shopping cart">
+  <div class="drawer-head"><h3>Your basket 🧺</h3><button class="close" id="cartClose">✕</button></div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-empty" id="cartEmpty"><div class="big">🍃</div><div>Your basket is empty.<br>Add some fresh fruit!</div></div>
+  <div class="cart-foot" id="cartFoot" style="display:none">
+    <div class="cart-total"><span>Total</span><b id="cartTotal">₹0</b></div>
+    <button class="wa-btn" id="waBtn">💬 Order on WhatsApp</button>
+    <p style="font-size:.72rem;color:var(--ink-soft);text-align:center;margin-top:8px">You&rsquo;ll be taken to WhatsApp to confirm your order.</p>
+  </div>
+</aside>
+
+<aside class="drawer" id="adminDrawer" aria-label="Manage catalog">
+  <div class="drawer-head"><h3>Manage catalog 🔧</h3><button class="close" id="adminClose">✕</button></div>
+  <div class="admin-scroll">
+    <div class="admin-note">Changes save to <b>this browser</b> (localStorage). To publish for everyone, re-deploy with updated defaults.</div>
+    <form id="addForm">
+      <div class="field"><label>Fruit name</label><input id="fName" required placeholder="e.g. Alphonso Mango"></div>
+      <div class="row2">
+        <div class="field"><label>Price (₹)</label><input id="fPrice" type="number" min="0" step="1" required placeholder="299"></div>
+        <div class="field"><label>Unit</label><input id="fUnit" placeholder="per kg" value="per kg"></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label>Category</label>
+          <select id="fCat"><option>Citrus</option><option>Berries</option><option>Tropical</option><option>Stone</option><option>Melons</option><option>Orchard</option><option>Exotic</option></select>
+        </div>
+        <div class="field"><label>Emoji</label><input id="fEmoji" placeholder="🥭" value="🍎"></div>
+      </div>
+      <div class="field"><label>Image URL (optional)</label><input id="fImg" placeholder="https://…"></div>
+      <div class="field"><label>Short description</label><textarea id="fDesc" placeholder="Sweet, juicy and in season."></textarea></div>
+      <div class="field"><label>In stock?</label><select id="fStock"><option value="yes">Yes — available</option><option value="no">No — sold out</option></select></div>
+      <button type="submit" class="btn btn-primary" style="width:100%">＋ Add fruit to catalog</button>
+    </form>
+    <hr style="border:none;border-top:1px solid var(--glass-line);margin:22px 0 16px">
+    <h3 style="font-family:Fraunces;font-weight:600;font-size:1.1rem;margin-bottom:6px">Shop settings</h3>
+    <div class="field"><label>WhatsApp number (with country code, no +)</label><input id="setWa" placeholder="919876543210"></div>
+    <button class="btn btn-ghost" id="saveSettings" style="width:100%;margin-bottom:10px">Save settings</button>
+    <button class="btn btn-ghost" id="resetBtn" style="width:100%;color:var(--berry)">↺ Reset catalog to defaults</button>
+  </div>
+</aside>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const LS={cat:'orchard_catalog_v1',cart:'orchard_cart_v1',set:'orchard_settings_v1'};
+
+const DEFAULT_FRUITS=[
+ {id:1,name:"Royal Gala Apples",cat:"Orchard",price:189,unit:"per kg",emoji:"🍎",stock:true,desc:"Crisp, sweet and snappy — straight from the hills.",img:"https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=600&q=80&auto=format&fit=crop"},
+ {id:2,name:"Alphonso Mangoes",cat:"Tropical",price:399,unit:"per kg",emoji:"🥭",stock:true,desc:"The king of fruits — rich, fragrant and buttery.",img:"https://images.unsplash.com/photo-1605027990121-cbae9e0642df?w=600&q=80&auto=format&fit=crop"},
+ {id:3,name:"Nagpur Oranges",cat:"Citrus",price:129,unit:"per kg",emoji:"🍊",stock:true,desc:"Juicy, tangy-sweet and bursting with vitamin C.",img:"https://images.unsplash.com/photo-1547514701-42782101795e?w=600&q=80&auto=format&fit=crop"},
+ {id:4,name:"Fresh Strawberries",cat:"Berries",price:249,unit:"per box",emoji:"🍓",stock:true,desc:"Plump, ruby-red and hand-picked at dawn.",img:"https://images.unsplash.com/photo-1518635017498-87f514b751ba?w=600&q=80&auto=format&fit=crop"},
+ {id:5,name:"Seedless Grapes",cat:"Orchard",price:159,unit:"per kg",emoji:"🍇",stock:true,desc:"Cool, crunchy green grapes — a perfect snack.",img:"https://images.unsplash.com/photo-1537640538966-79f369143f8f?w=600&q=80&auto=format&fit=crop"},
+ {id:6,name:"Sweet Pineapple",cat:"Tropical",price:99,unit:"each",emoji:"🍍",stock:true,desc:"Golden, tangy and tropical — sunshine in a fruit.",img:"https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=600&q=80&auto=format&fit=crop"},
+ {id:7,name:"Baby Watermelon",cat:"Melons",price:79,unit:"each",emoji:"🍉",stock:true,desc:"Crisp, hydrating and impossibly refreshing.",img:"https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=600&q=80&auto=format&fit=crop"},
+ {id:8,name:"Wild Blueberries",cat:"Berries",price:329,unit:"per box",emoji:"🫐",stock:false,desc:"Antioxidant-rich little gems. Back in stock soon.",img:"https://images.unsplash.com/photo-1498557850523-fd3d118b962e?w=600&q=80&auto=format&fit=crop"},
+ {id:9,name:"Ruby Pomegranate",cat:"Exotic",price:219,unit:"per kg",emoji:"🍎",stock:true,desc:"Jewel-like arils, sweet-tart and heart-healthy.",img:"https://images.unsplash.com/photo-1541344999736-83eca272f6fc?w=600&q=80&auto=format&fit=crop"},
+ {id:10,name:"Golden Kiwi",cat:"Exotic",price:289,unit:"per kg",emoji:"🥝",stock:true,desc:"Tropical, tangy and loaded with vitamin C.",img:"https://images.unsplash.com/photo-1585059895524-72359e06133a?w=600&q=80&auto=format&fit=crop"},
+ {id:11,name:"Cavendish Bananas",cat:"Tropical",price:69,unit:"per dozen",emoji:"🍌",stock:true,desc:"Naturally ripened, creamy and energy-packed.",img:"https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=600&q=80&auto=format&fit=crop"},
+ {id:12,name:"Juicy Peaches",cat:"Stone",price:269,unit:"per kg",emoji:"🍑",stock:true,desc:"Soft, fragrant and dripping with summer sweetness.",img:"https://images.unsplash.com/photo-1629828874514-c1e5103f8b7f?w=600&q=80&auto=format&fit=crop"}
+];
+
+let fruits=load(LS.cat,DEFAULT_FRUITS);
+let cart=load(LS.cart,{});
+let settings=load(LS.set,{wa:"919876543210"});
+let activeCat="All", query="", isAdmin=false;
+
+function load(k,f){try{const v=JSON.parse(localStorage.getItem(k));return v??f}catch(e){return f}}
+function save(k,v){localStorage.setItem(k,JSON.stringify(v))}
+function money(n){return "₹"+Number(n).toLocaleString('en-IN')}
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2200)}
+
+function categories(){return ["All",...new Set(fruits.map(f=>f.cat))]}
+function renderChips(){
+  $('#chips').innerHTML=categories().map(c=>`<button class="chip${c===activeCat?' active':''}" data-cat="${c}">${c}</button>`).join('');
+}
+function renderGrid(){
+  const list=fruits.filter(f=>(activeCat==="All"||f.cat===activeCat)&&f.name.toLowerCase().includes(query));
+  const g=$('#grid');
+  if(!list.length){g.innerHTML=`<div class="empty"><div class="big">🍂</div>No fruits match your search.</div>`;return}
+  g.innerHTML=list.map(f=>`
+    <article class="card reveal in" data-id="${f.id}">
+      <div class="card-img${f.img?'':' broken'}">
+        ${f.img?`<img src="${f.img}" alt="${f.name}" loading="lazy" onerror="this.closest('.card-img').classList.add('broken')">`:''}
+        <div class="fallback">${f.emoji||'🍎'}</div>
+        <span class="tag${f.stock?'':' out'}">${f.stock?'🌿 Organic':'Sold out'}</span>
+      </div>
+      <div class="card-body">
+        <span class="cat">${f.cat}</span>
+        <h3>${f.name}</h3>
+        <p class="desc">${f.desc||''}</p>
+        <div class="price-row"><span class="price">${money(f.price)}</span><span class="unit">${f.unit||''}</span></div>
+        <div class="card-actions">
+          <button class="add-btn" data-add="${f.id}" ${f.stock?'':'disabled'}>${f.stock?'＋ Add to basket':'Out of stock'}</button>
+          <button class="del-btn" data-del="${f.id}" title="Remove fruit">🗑️</button>
+        </div>
+      </div>
+    </article>`).join('');
+}
+function renderAll(){renderChips();renderGrid();$('#statCount').textContent=fruits.length+'+';}
+
+function cartArr(){return Object.values(cart)}
+function cartQty(){return cartArr().reduce((s,i)=>s+i.qty,0)}
+function cartTotal(){return cartArr().reduce((s,i)=>s+i.qty*i.price,0)}
+function addToCart(id){
+  const f=fruits.find(x=>x.id===id);if(!f||!f.stock)return;
+  if(cart[id])cart[id].qty++;else cart[id]={id,name:f.name,price:f.price,unit:f.unit,emoji:f.emoji,img:f.img,qty:1};
+  save(LS.cart,cart);renderCart();toast(`${f.name} added 🧺`);
+}
+function setQty(id,d){if(!cart[id])return;cart[id].qty+=d;if(cart[id].qty<=0)delete cart[id];save(LS.cart,cart);renderCart()}
+function renderCart(){
+  const c=$('#cartCount'),q=cartQty();
+  c.textContent=q;c.classList.toggle('show',q>0);
+  const items=cartArr(),box=$('#cartItems');
+  $('#cartEmpty').style.display=items.length?'none':'grid';
+  $('#cartFoot').style.display=items.length?'block':'none';
+  box.innerHTML=items.map(i=>`
+    <div class="ci">
+      ${i.img?`<img src="${i.img}" alt="${i.name}" onerror="this.outerHTML='<div class=ph>${i.emoji||'🍎'}</div>'">`:`<div class="ph">${i.emoji||'🍎'}</div>`}
+      <div class="ci-info"><b>${i.name}</b><span class="pu">${money(i.price)} ${i.unit||''}</span>
+        <div class="qty"><button data-q="${i.id}" data-d="-1">−</button><span>${i.qty}</span><button data-q="${i.id}" data-d="1">＋</button></div>
+      </div>
+      <div class="ci-sub">${money(i.price*i.qty)}</div>
+    </div>`).join('');
+  $('#cartTotal').textContent=money(cartTotal());
+}
+function whatsappOrder(){
+  const items=cartArr();if(!items.length)return;
+  let msg=`Hi ${$('#brandName').textContent}! 🍎 I'd like to order:%0A%0A`;
+  items.forEach(i=>{msg+=`• ${i.name} x${i.qty} — ${money(i.price*i.qty)}%0A`});
+  msg+=`%0A*Total: ${money(cartTotal())}*%0A%0APlease confirm availability & delivery. Thank you!`;
+  window.open(`https://wa.me/${settings.wa}?text=${msg}`,'_blank');
+}
+
+function openDrawer(el){$('#overlay').classList.add('show');el.classList.add('show')}
+function closeDrawers(){$('#overlay').classList.remove('show');$('#cartDrawer').classList.remove('show');$('#adminDrawer').classList.remove('show')}
+
+function enableAdmin(){
+  isAdmin=true;document.body.classList.add('admin');
+  $('#adminToggle').style.display='inline-flex';$('#setWa').value=settings.wa;
+  toast('Owner mode on 🔧');
+}
+$('#adminLink').onclick=e=>{e.preventDefault();
+  if(isAdmin){openDrawer($('#adminDrawer'));return}
+  const p=prompt('Owner password:');
+  if(p==='orchard2026'){enableAdmin();openDrawer($('#adminDrawer'))}
+  else if(p!==null)toast('Wrong password');
+};
+$('#adminToggle').onclick=()=>openDrawer($('#adminDrawer'));
+$('#addForm').onsubmit=e=>{
+  e.preventDefault();
+  const f={id:Date.now(),name:$('#fName').value.trim(),price:+$('#fPrice').value,unit:$('#fUnit').value.trim()||'per kg',
+    cat:$('#fCat').value,emoji:$('#fEmoji').value.trim()||'🍎',img:$('#fImg').value.trim(),desc:$('#fDesc').value.trim(),stock:$('#fStock').value==='yes'};
+  fruits.unshift(f);save(LS.cat,fruits);renderAll();e.target.reset();$('#fUnit').value='per kg';$('#fEmoji').value='🍎';
+  toast(`${f.name} added to catalog ✓`);
+};
+$('#saveSettings').onclick=()=>{settings.wa=$('#setWa').value.replace(/\D/g,'');save(LS.set,settings);toast('Settings saved ✓')};
+$('#resetBtn').onclick=()=>{if(confirm('Reset catalog to the original defaults?')){fruits=JSON.parse(JSON.stringify(DEFAULT_FRUITS));save(LS.cat,fruits);renderAll();toast('Catalog reset ↺')}};
+
+document.addEventListener('click',e=>{
+  const add=e.target.closest('[data-add]'); if(add){addToCart(+add.dataset.add);return}
+  const del=e.target.closest('[data-del]'); if(del&&isAdmin){const id=+del.dataset.del;const f=fruits.find(x=>x.id===id);if(confirm(`Remove "${f.name}" from the catalog?`)){fruits=fruits.filter(x=>x.id!==id);save(LS.cat,fruits);renderAll();toast('Fruit removed')}return}
+  const q=e.target.closest('[data-q]'); if(q){setQty(+q.dataset.q,+q.dataset.d);return}
+  const chip=e.target.closest('.chip'); if(chip){activeCat=chip.dataset.cat;renderChips();renderGrid();return}
+});
+$('#search').oninput=e=>{query=e.target.value.toLowerCase().trim();renderGrid()};
+$('#cartBtn').onclick=()=>openDrawer($('#cartDrawer'));
+$('#heroCartBtn').onclick=()=>openDrawer($('#cartDrawer'));
+$('#cartClose').onclick=closeDrawers;$('#adminClose').onclick=closeDrawers;$('#overlay').onclick=closeDrawers;
+$('#waBtn').onclick=whatsappOrder;
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawers()});
+document.addEventListener('keydown',e=>{if(e.shiftKey&&e.key.toLowerCase()==='a'&&!/INPUT|TEXTAREA/.test(document.activeElement.tagName)){if(!isAdmin)enableAdmin();openDrawer($('#adminDrawer'))}});
+
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12});
+$$('.reveal').forEach(el=>io.observe(el));
+
+renderAll();renderCart();
+</script>
+</body>
+</html>
